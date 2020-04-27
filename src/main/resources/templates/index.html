@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymelead.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parking</title>
+
+
+</head>
+<body>
+<h3>ВЕСЬ ИНТЕРФЕЙС</h3>
+<span>Вы вошли под именем </span>
+<div id="name"></div>
+
+<script th:inline="javascript">
+    var frontendData = [[${frontendData}]];
+    document.getElementById("name").innerText = frontendData.profile.name;
+</script>
+</body>
+</html>

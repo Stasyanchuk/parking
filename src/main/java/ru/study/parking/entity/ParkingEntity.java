@@ -28,7 +28,7 @@ public class ParkingEntity {
             joinColumns = {@JoinColumn(name = "working_hours_id", referencedColumnName = "id")})
     private Map<Integer, ArrayList<LocalTime>> workingHours = new HashMap<>();
 
-    @ElementCollection
+    @ElementCollection()
     private List<String> carNumbers = new ArrayList<>();
 
     public ParkingEntity() {

@@ -14,7 +14,7 @@ import java.time.LocalTime;
 import java.util.*;
 
 @RestController
-@RequestMapping("parking")
+@RequestMapping("/v1/parking")
 public class ParkingController {
 
     private ParkingService parkingService;
