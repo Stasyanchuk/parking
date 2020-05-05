@@ -1,12 +1,8 @@
 package ru.study.parking.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.study.parking.dao.interfaces.UserService;
-import ru.study.parking.entity.UserEntity;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/user")
@@ -15,7 +11,7 @@ public class UserController {
     private UserService userService;
 
 
-    @Autowired
+   /* @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -45,5 +41,5 @@ public class UserController {
             }
         }
         userService.update(userEntity);
-    }
+    }*/
 }
