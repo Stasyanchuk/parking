@@ -75,12 +75,12 @@ public class ParkingController {
     }
 
     @PutMapping("/{id}/car")
-    public void addCar(@PathVariable Long id, @RequestBody String carNumber) {
+    public void addCar(@PathVariable Long id, @RequestParam( name = "carNumber") String carNumber) {
         parkingService.addCar(id, carNumber);
     }
 
     @DeleteMapping("/{id}/car")
-    public void deleteCar(@PathVariable Long id, @RequestBody String carNumber) {
+    public void deleteCar(@PathVariable Long id, @RequestParam( name = "carNumber") String carNumber) {
         parkingService.removeCar(id, carNumber);
     }
 }
