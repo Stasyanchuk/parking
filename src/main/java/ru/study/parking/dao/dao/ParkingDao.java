@@ -55,6 +55,7 @@ public class ParkingDao implements ParkingService {
         ParkingEntity parking = findById(parkingId);
         parking.getCarNumbers().add(carNumber);
         parking.setOccupiedPlaces(parking.getOccupiedPlaces() + 1);
+        parking.setAvailablePlaces(parking.getAvailablePlaces() - 1);
         em.merge(parking);
     }
 
@@ -65,6 +66,7 @@ public class ParkingDao implements ParkingService {
             if (number.equals(carNumber)) {
                 parking.getCarNumbers().remove(carNumber);
                 parking.setOccupiedPlaces(parking.getOccupiedPlaces() - 1);
+                parking.setAvailablePlaces(parking.getAvailablePlaces() + 1);
                 break;
             }
         }

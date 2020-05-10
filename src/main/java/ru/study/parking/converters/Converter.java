@@ -18,10 +18,12 @@ public class Converter {
         ParkingTransfer transfer = new ParkingTransfer();
         transfer.setId(parking.getId());
         transfer.setAddress(parking.getAddress());
+        transfer.setName(parking.getName());
         transfer.setPrice(parking.getPrice());
         transfer.setCarNumbers(parking.getCarNumbers());
         transfer.setNumberOfPlaces(parking.getNumberOfPlaces());
         transfer.setOccupiedPlaces(parking.getOccupiedPlaces());
+        transfer.setAvailablePlaces(parking.getAvailablePlaces());
         transfer.setWorkingHours(parking.getWorkingHours());
         return transfer;
     }
@@ -35,9 +37,11 @@ public class Converter {
         entity.setId(transfer.getId());
         entity.setAddress(transfer.getAddress());
         entity.setPrice(transfer.getPrice());
+        entity.setName(transfer.getName());
         entity.setCarNumbers(transfer.getCarNumbers());
         entity.setNumberOfPlaces(transfer.getNumberOfPlaces());
         entity.setOccupiedPlaces(transfer.getOccupiedPlaces());
+        entity.setAvailablePlaces(transfer.getAvailablePlaces());
         entity.setWorkingHours(transfer.getWorkingHours());
 
         return entity;

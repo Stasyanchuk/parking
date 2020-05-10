@@ -15,9 +15,13 @@ public class ParkingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     private String address;
 
     private Integer numberOfPlaces;
+
+    private Integer availablePlaces;
 
     private Integer occupiedPlaces;
 
@@ -90,4 +94,19 @@ public class ParkingEntity {
         this.carNumbers = carNumbers;
     }
 
+    public Integer getAvailablePlaces() {
+        return availablePlaces;
+    }
+
+    public void setAvailablePlaces(Integer availablePlaces) {
+        this.availablePlaces = availablePlaces;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -1,6 +1,5 @@
 package ru.study.parking.transfers;
 
-import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,9 +12,13 @@ public class ParkingTransfer {
 
     private String address;
 
+    private String name;
+
     private Integer numberOfPlaces;
 
     private Integer occupiedPlaces;
+
+    private Integer availablePlaces;
 
     private Double price;
 
@@ -80,5 +83,21 @@ public class ParkingTransfer {
 
     public void setCarNumbers(List<String> carNumbers) {
         this.carNumbers = carNumbers;
+    }
+
+    public Integer getAvailablePlaces() {
+        return availablePlaces;
+    }
+
+    public void setAvailablePlaces(Integer availablePlaces) {
+        this.availablePlaces = availablePlaces;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
