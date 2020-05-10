@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/v1/parking")
 public class ParkingController {
