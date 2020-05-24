@@ -1,9 +1,7 @@
 package ru.study.parking.entity;
 
-
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -25,14 +23,9 @@ public class UserEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Cascade(value = {
-        org.hibernate.annotations.CascadeType.DELETE, org.hibernate.annotations.CascadeType.DETACH, org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.REFRESH, org.hibernate.annotations.CascadeType.REMOVE
+        CascadeType.DELETE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE
             })
     private List<String> cars = new ArrayList<>();
-
-    @OneToMany(
-            cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<HistoryParking> historyParking = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -80,13 +73,5 @@ public class UserEntity {
 
     public void setCars(List<String> cars) {
         this.cars = cars;
-    }
-
-    public List<HistoryParking> getHistoryParking() {
-        return historyParking;
-    }
-
-    public void setHistoryParking(List<HistoryParking> historyParking) {
-        this.historyParking = historyParking;
     }
 }
