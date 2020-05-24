@@ -1,5 +1,8 @@
 package ru.study.parking.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -23,6 +26,10 @@ public class ParkingEntity {
 
     private Double price;
 
+    private Double lat;
+
+    private Double lon;
+
     @ElementCollection
     @CollectionTable(name = "working_hours",
             joinColumns = {@JoinColumn(name = "working_hours_id", referencedColumnName = "id")})
@@ -30,6 +37,11 @@ public class ParkingEntity {
 
     @ElementCollection()
     private List<String> carNumbers = new ArrayList<>();
+
+    @OneToMany(
+            cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<HistoryParking> historyParking = new ArrayList<>();
 
     public ParkingEntity() {
     }
@@ -74,6 +86,22 @@ public class ParkingEntity {
         this.price = price;
     }
 
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
     public Map<Integer, ArrayList<LocalTime>> getWorkingHours() {
         return workingHours;
     }
@@ -90,4 +118,11 @@ public class ParkingEntity {
         this.carNumbers = carNumbers;
     }
 
+    public List<HistoryParking> getHistoryParking() {
+        return historyParking;
+    }
+
+    public void setHistoryParking(List<HistoryParking> historyParking) {
+        this.historyParking = historyParking;
+    }
 }

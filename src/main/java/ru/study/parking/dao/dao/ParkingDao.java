@@ -51,10 +51,7 @@ public class ParkingDao implements ParkingService {
     }
 
     @Override
-    public void addCar(Long parkingId, String carNumber) {
-        ParkingEntity parking = findById(parkingId);
-        parking.getCarNumbers().add(carNumber);
-        parking.setOccupiedPlaces(parking.getOccupiedPlaces() + 1);
+    public void addCar(ParkingEntity parking) {
         em.merge(parking);
     }
 
