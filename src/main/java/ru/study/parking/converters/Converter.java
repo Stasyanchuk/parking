@@ -1,9 +1,12 @@
 package ru.study.parking.converters;
 
 import org.springframework.stereotype.Component;
+import ru.study.parking.entity.HistoryParking;
 import ru.study.parking.entity.ParkingEntity;
+import ru.study.parking.transfers.HistoryParkingTransfer;
 import ru.study.parking.transfers.ParkingTransfer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +28,9 @@ public class Converter {
         transfer.setOccupiedPlaces(parking.getOccupiedPlaces());
         transfer.setAvailablePlaces(parking.getAvailablePlaces());
         transfer.setWorkingHours(parking.getWorkingHours());
+        transfer.setLat(parking.getLat());
+        transfer.setLon(parking.getLon());
+        transfer.setHistoryParking(convertHistoryToTransfer(parking.getHistoryParking()));
         return transfer;
     }
 
@@ -43,8 +49,24 @@ public class Converter {
         entity.setOccupiedPlaces(transfer.getOccupiedPlaces());
         entity.setAvailablePlaces(transfer.getAvailablePlaces());
         entity.setWorkingHours(transfer.getWorkingHours());
+        entity.setLat(transfer.getLat());
+        entity.setLon(transfer.getLon());
 
         return entity;
     }
 
+    public List<HistoryParkingTransfer> convertHistoryToTransfer(List<HistoryParking> historyParkings){
+        List<HistoryParkingTransfer> histories = new ArrayList<>();
+
+        historyParkings.forEach(h -> histories.add(convertHistoryToTransfer(h)));
+
+        return histories;
+    }
+
+    public HistoryParkingTransfer convertHistoryToTransfer(HistoryParking history){
+        HistoryParkingTransfer h = new HistoryParkingTransfer();
+        h.setNumberCar(history.getNumberCar());
+        h.setParkingStart(history.getParkingStart());
+        return h;
+    }
 }

@@ -1,5 +1,7 @@
 package ru.study.parking.transfers;
 
+import ru.study.parking.entity.HistoryParking;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,11 +22,17 @@ public class ParkingTransfer {
 
     private Integer availablePlaces;
 
+    private Double lat;
+
+    private Double lon;
+
     private Double price;
 
     private Map<Integer, ArrayList<LocalTime>> workingHours = new HashMap<>();
 
     private List<String> carNumbers = new ArrayList<>();
+
+    private List<HistoryParkingTransfer> historyParking = new ArrayList<>();
 
     public ParkingTransfer() {
     }
@@ -99,5 +107,29 @@ public class ParkingTransfer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    public List<HistoryParkingTransfer> getHistoryParking() {
+        return historyParking;
+    }
+
+    public void setHistoryParking(List<HistoryParkingTransfer> historyParking) {
+        this.historyParking = historyParking;
     }
 }

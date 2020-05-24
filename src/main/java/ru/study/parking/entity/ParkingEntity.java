@@ -1,5 +1,8 @@
 package ru.study.parking.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -15,11 +18,19 @@ public class ParkingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     private String address;
 
     private Integer numberOfPlaces;
 
+    private Integer availablePlaces;
+
     private Integer occupiedPlaces;
+
+    private Double lon;
+
+    private Double lat;
 
     private Double price;
 
@@ -27,6 +38,11 @@ public class ParkingEntity {
     @CollectionTable(name = "working_hours",
             joinColumns = {@JoinColumn(name = "working_hours_id", referencedColumnName = "id")})
     private Map<Integer, ArrayList<LocalTime>> workingHours = new HashMap<>();
+
+    @OneToMany(
+            cascade = {CascadeType.REMOVE, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<HistoryParking> historyParking = new ArrayList<>();
 
     @ElementCollection()
     private List<String> carNumbers = new ArrayList<>();
@@ -90,4 +106,43 @@ public class ParkingEntity {
         this.carNumbers = carNumbers;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAvailablePlaces() {
+        return availablePlaces;
+    }
+
+    public void setAvailablePlaces(Integer availablePlaces) {
+        this.availablePlaces = availablePlaces;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public List<HistoryParking> getHistoryParking() {
+        return historyParking;
+    }
+
+    public void setHistoryParking(List<HistoryParking> historyParking) {
+        this.historyParking = historyParking;
+    }
 }
