@@ -16,5 +16,6 @@ public interface ParkingService {
     public List<ParkingEntity> findOpenParking(LocalDateTime time);
     public void addCar(ParkingEntity parking);
     public void removeCar(Long parkingId, String carNumber);
+    public void updateRating(ParkingEntity parking);
 
 }

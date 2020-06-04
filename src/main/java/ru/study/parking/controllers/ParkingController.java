@@ -42,7 +42,7 @@ public class ParkingController {
     }
 
     @GetMapping(value = "/open", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getOpenParking(){
+    public ResponseEntity getOpenParking() {
         List<ParkingEntity> parkings = parkingService.findOpenParking(LocalDateTime.now());
         return ResponseEntity.ok(converter.convertParkingToTransfer(parkings));
     }
@@ -133,7 +133,7 @@ public class ParkingController {
     }
 
     @PutMapping("/{id}/car")
-    public void addCar(@PathVariable Long id, @RequestParam( name = "carNumber") String carNumber) {
+    public void addCar(@PathVariable Long id, @RequestParam(name = "carNumber") String carNumber) {
         ParkingEntity parking = parkingService.findById(id);
         parking.getCarNumbers().add(carNumber);
         parking.setOccupiedPlaces(parking.getOccupiedPlaces() + 1);
@@ -143,7 +143,22 @@ public class ParkingController {
     }
 
     @DeleteMapping("/{id}/car")
-    public void deleteCar(@PathVariable Long id, @RequestParam( name = "carNumber") String carNumber) {
+    public void deleteCar(@PathVariable Long id, @RequestParam(name = "carNumber") String carNumber) {
         parkingService.removeCar(id, carNumber);
+    }
+
+    @PutMapping("/{id}/rating")
+    public ResponseEntity<ParkingEntity> addRating(@PathVariable Long id, @RequestBody String rating) {
+        ParkingEntity parkingEntity = parkingService.findById(id);
+        Integer oldNumber = parkingEntity.getNumberOfRating();
+        Double oldRating = parkingEntity.getRating();
+        Double totalNumber = oldNumber * oldRating;
+        totalNumber = totalNumber + Double.parseDouble(rating);
+        oldNumber++;
+        parkingEntity.setNumberOfRating(oldNumber);
+        parkingEntity.setRating(totalNumber / oldNumber);
+
+        parkingService.updateRating(parkingEntity);
+        return ResponseEntity.ok(parkingEntity);
     }
 }

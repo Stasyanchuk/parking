@@ -34,6 +34,12 @@ public class ParkingEntity {
 
     private Double price;
 
+    @Column(name = "rating", nullable = false, columnDefinition = "double precision default 0")
+    private Double rating;
+
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private Integer numberOfRating;
+
     @ElementCollection
     @CollectionTable(name = "working_hours",
             joinColumns = {@JoinColumn(name = "working_hours_id", referencedColumnName = "id")})
@@ -144,5 +150,21 @@ public class ParkingEntity {
 
     public void setHistoryParking(List<HistoryParking> historyParking) {
         this.historyParking = historyParking;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public Integer getNumberOfRating() {
+        return numberOfRating;
+    }
+
+    public void setNumberOfRating(Integer numberOfRating) {
+        this.numberOfRating = numberOfRating;
     }
 }

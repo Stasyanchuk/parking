@@ -28,6 +28,10 @@ public class ParkingTransfer {
 
     private Double price;
 
+    private Double rating;
+
+    private Integer numberOfRating;
+
     private Map<Integer, ArrayList<LocalTime>> workingHours = new HashMap<>();
 
     private List<String> carNumbers = new ArrayList<>();
@@ -131,5 +135,21 @@ public class ParkingTransfer {
 
     public void setHistoryParking(List<HistoryParkingTransfer> historyParking) {
         this.historyParking = historyParking;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public Integer getNumberOfRating() {
+        return numberOfRating;
+    }
+
+    public void setNumberOfRating(Integer numberOfRating) {
+        this.numberOfRating = numberOfRating;
     }
 }

@@ -31,6 +31,8 @@ public class Converter {
         transfer.setLat(parking.getLat());
         transfer.setLon(parking.getLon());
         transfer.setHistoryParking(convertHistoryToTransfer(parking.getHistoryParking()));
+        transfer.setRating(parking.getRating());
+        transfer.setNumberOfRating(parking.getNumberOfRating());
         return transfer;
     }
 
@@ -51,7 +53,6 @@ public class Converter {
         entity.setWorkingHours(transfer.getWorkingHours());
         entity.setLat(transfer.getLat());
         entity.setLon(transfer.getLon());
-
         return entity;
     }
 

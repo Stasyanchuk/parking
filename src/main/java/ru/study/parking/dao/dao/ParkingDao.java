@@ -68,4 +68,9 @@ public class ParkingDao implements ParkingService {
         }
         em.merge(parking);
     }
+
+    @Override
+    public void updateRating(ParkingEntity parking) {
+        em.merge(parking);
+    }
 }
